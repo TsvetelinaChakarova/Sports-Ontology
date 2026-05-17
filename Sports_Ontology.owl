@@ -1,0 +1,816 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xml:base="http://example.org/sports.owl"
+         xmlns="http://example.org/sports.owl#">
+
+<owl:Ontology rdf:about="http://example.org/sports.owl"/>
+
+<owl:ObjectProperty rdf:about="#PlayedAt">
+  <rdfs:domain rdf:resource="#Sport"/>
+  <rdfs:range rdf:resource="#Place"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#PlayedWith">
+  <rdfs:domain rdf:resource="#Sport"/>
+  <rdfs:range rdf:resource="#Equipment"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#PhysicalActivityLevel">
+  <rdfs:domain rdf:resource="#Sport"/>
+  <rdfs:range rdf:resource="#PhysicalActivity"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#PlaysSport">
+  <rdfs:range rdf:resource="#Sport"/>
+  <rdfs:domain rdf:resource="#SportParticipant"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#HasTeamMember">
+  <rdfs:range rdf:resource="#Athlete"/>
+  <rdfs:domain rdf:resource="#Team"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#IsPartOfTeam">
+  <rdfs:domain rdf:resource="#Athlete"/>
+  <rdfs:range rdf:resource="#Team"/>
+</owl:ObjectProperty>
+
+<owl:ObjectProperty rdf:about="#HasTeammate">
+  <rdfs:domain rdf:resource="#Athlete"/>
+  <rdfs:range rdf:resource="#Athlete"/>
+</owl:ObjectProperty>
+
+<owl:DatatypeProperty rdf:about="#IsTeamSport">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <rdfs:domain rdf:resource="#Sport"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#HasTeamSize">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  <rdfs:domain rdf:resource="#Sport"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#HasPhysicalContact">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  <rdfs:domain rdf:resource="#Sport"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#FirstName">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:domain rdf:resource="#Person"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#LastName">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:domain rdf:resource="#Person"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#DateOfBirth">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:domain rdf:resource="#Person"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#PlaceOfBirth">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:domain rdf:resource="#Person"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#TeamName">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:domain rdf:resource="#Team"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#Country">
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  <rdfs:domain rdf:resource="#Team"/>
+</owl:DatatypeProperty>
+
+<owl:Class rdf:about="#Sport">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Place">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Equipment">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PhysicalActivity">
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Person">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#DateOfBirth"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#LastName"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#FirstName"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#PlaceOfBirth"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SportParticipant">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Sport"/>
+      <owl:onProperty rdf:resource="#PlaysSport"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+</owl:Class>
+
+<owl:Class rdf:about="#OutdoorPlace">
+  <rdfs:subClassOf rdf:resource="#Place"/>
+</owl:Class>
+
+<owl:Class rdf:about="#IndoorPlace">
+  <rdfs:subClassOf rdf:resource="#Place"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Stadium">
+  <rdfs:subClassOf rdf:resource="#OutdoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Track">
+  <rdfs:subClassOf rdf:resource="#OutdoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Beach">
+  <rdfs:subClassOf rdf:resource="#OutdoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Pitch">
+  <rdfs:subClassOf rdf:resource="#OutdoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#GolfCourse">
+  <rdfs:subClassOf rdf:resource="#OutdoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Arena">
+  <rdfs:subClassOf rdf:resource="#IndoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SwimmingPool">
+  <rdfs:subClassOf rdf:resource="#IndoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#IceRink">
+  <rdfs:subClassOf rdf:resource="#IndoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#IndoorCourt">
+  <rdfs:subClassOf rdf:resource="#IndoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SportsHall">
+  <rdfs:subClassOf rdf:resource="#IndoorPlace"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ball">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Racquet">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Net">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Board">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MotorVehicle">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Club">
+  <rdfs:subClassOf rdf:resource="#Equipment"/>
+</owl:Class>
+
+<owl:Class rdf:about="#LowPhysicalActivity">
+  <rdfs:subClassOf rdf:resource="#PhysicalActivity"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumPhysicalActivity">
+  <rdfs:subClassOf rdf:resource="#PhysicalActivity"/>
+</owl:Class>
+
+<owl:Class rdf:about="#HighPhysicalActivity">
+  <rdfs:subClassOf rdf:resource="#PhysicalActivity"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Athlete">
+  <rdfs:subClassOf rdf:resource="#Person"/>
+  <rdfs:subClassOf rdf:resource="#SportParticipant"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Team">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onClass rdf:resource="#Sport"/>
+      <owl:onProperty rdf:resource="#PlaysSport"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#TeamName"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onClass rdf:resource="#Athlete"/>
+      <owl:onProperty rdf:resource="#HasTeamMember"/>
+      <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minQualifiedCardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#Country"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#SportParticipant"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TeamAthlete">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Team"/>
+      <owl:onProperty rdf:resource="#IsPartOfTeam"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Athlete"/>
+</owl:Class>
+
+<owl:Class rdf:about="#IndividualSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#IsTeamSport"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#HasTeamSize"/>
+      <owl:cardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:cardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TeamSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#IsTeamSport"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#HasTeamSize"/>
+      <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">2</owl:minCardinality>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#OutdoorSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#OutdoorPlace"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#IndoorSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#IndoorPlace"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#StadiumSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Stadium"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#OutdoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#TrackSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Track"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#OutdoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BeachSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Beach"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#OutdoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#PitchSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Pitch"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#OutdoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#GolfCourseSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#GolfCourse"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#OutdoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ArenaSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Arena"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#IndoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SwimmingPoolSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#SwimmingPool"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#IndoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#IceRinkSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#IceRink"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#IndoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#IndoorCourtSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#IndoorCourt"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#IndoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#SportsHallSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#SportsHall"/>
+      <owl:onProperty rdf:resource="#PlayedAt"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#IndoorSport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BallSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Ball"/>
+      <owl:onProperty rdf:resource="#PlayedWith"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#RacquetSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Racquet"/>
+      <owl:onProperty rdf:resource="#PlayedWith"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#NetSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Net"/>
+      <owl:onProperty rdf:resource="#PlayedWith"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#BoardSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Board"/>
+      <owl:onProperty rdf:resource="#PlayedWith"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MotorSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#MotorVehicle"/>
+      <owl:onProperty rdf:resource="#PlayedWith"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ClubSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#Club"/>
+      <owl:onProperty rdf:resource="#PlayedWith"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#ContactSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#HasPhysicalContact"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#NonContactSport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#HasPhysicalContact"/>
+      <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#LowPhysicalActivitySport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#LowPhysicalActivity"/>
+      <owl:onProperty rdf:resource="#PhysicalActivityLevel"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#MediumPhysicalActivitySport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#MediumPhysicalActivity"/>
+      <owl:onProperty rdf:resource="#PhysicalActivityLevel"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:Class rdf:about="#HighPhysicalActivitySport">
+  <owl:equivalentClass>
+    <owl:Restriction>
+      <owl:someValuesFrom rdf:resource="#HighPhysicalActivity"/>
+      <owl:onProperty rdf:resource="#PhysicalActivityLevel"/>
+    </owl:Restriction>
+  </owl:equivalentClass>
+  <rdfs:subClassOf rdf:resource="#Sport"/>
+</owl:Class>
+
+<owl:NamedIndividual rdf:about="#FootballStadium">
+  <rdf:type rdf:resource="#Stadium"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#FootballBall">
+  <rdf:type rdf:resource="#Ball"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#FootballNet">
+  <rdf:type rdf:resource="#Net"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Running">
+  <rdf:type rdf:resource="#HighPhysicalActivity"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Football">
+  <rdf:type rdf:resource="#Sport"/>
+  <rdf:type rdf:resource="#TeamSport"/>
+  <rdf:type rdf:resource="#StadiumSport"/>
+  <rdf:type rdf:resource="#BallSport"/>
+  <rdf:type rdf:resource="#NetSport"/>
+  <rdf:type rdf:resource="#ContactSport"/>
+  <rdf:type rdf:resource="#HighPhysicalActivitySport"/>
+  <PlayedAt rdf:resource="#FootballStadium"/>
+  <PlayedWith rdf:resource="#FootballBall"/>
+  <PlayedWith rdf:resource="#FootballNet"/>
+  <PhysicalActivityLevel rdf:resource="#Running"/>
+  <HasTeamSize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">11</HasTeamSize>
+  <IsTeamSport rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</IsTeamSport>
+  <HasPhysicalContact rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</HasPhysicalContact>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#SprintTrack">
+  <rdf:type rdf:resource="#Track"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Sprint">
+  <rdf:type rdf:resource="#Sport"/>
+  <rdf:type rdf:resource="#IndividualSport"/>
+  <rdf:type rdf:resource="#TrackSport"/>
+  <rdf:type rdf:resource="#NonContactSport"/>
+  <rdf:type rdf:resource="#HighPhysicalActivitySport"/>
+  <PhysicalActivityLevel rdf:resource="#Running"/>
+  <PlayedAt rdf:resource="#SprintTrack"/>
+  <IsTeamSport rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</IsTeamSport>
+  <HasPhysicalContact rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</HasPhysicalContact>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#GolfCourseVenue">
+  <rdf:type rdf:resource="#GolfCourse"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#GolfBall">
+  <rdf:type rdf:resource="#Ball"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#GolfClub">
+  <rdf:type rdf:resource="#Club"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Walking">
+  <rdf:type rdf:resource="#LowPhysicalActivity"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Golf">
+  <rdf:type rdf:resource="#Sport"/>
+  <rdf:type rdf:resource="#IndividualSport"/>
+  <rdf:type rdf:resource="#GolfCourseSport"/>
+  <rdf:type rdf:resource="#BallSport"/>
+  <rdf:type rdf:resource="#ClubSport"/>
+  <rdf:type rdf:resource="#NonContactSport"/>
+  <rdf:type rdf:resource="#LowPhysicalActivitySport"/>
+  <PlayedAt rdf:resource="#GolfCourseVenue"/>
+  <PlayedWith rdf:resource="#GolfBall"/>
+  <PlayedWith rdf:resource="#GolfClub"/>
+  <PhysicalActivityLevel rdf:resource="#Walking"/>
+  <IsTeamSport rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</IsTeamSport>
+  <HasPhysicalContact rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</HasPhysicalContact>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TableTennisSportsHall">
+  <rdf:type rdf:resource="#SportsHall"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TableTennisRacquet">
+  <rdf:type rdf:resource="#Racquet"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TableTennisfBall">
+  <rdf:type rdf:resource="#Ball"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TableTennisNet">
+  <rdf:type rdf:resource="#Net"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#ActiveMovements">
+  <rdf:type rdf:resource="#MediumPhysicalActivity"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#TableTennis">
+  <rdf:type rdf:resource="#Sport"/>
+  <rdf:type rdf:resource="#IndividualSport"/>
+  <rdf:type rdf:resource="#SportsHallSport"/>
+  <rdf:type rdf:resource="#BallSport"/>
+  <rdf:type rdf:resource="#RacquetSport"/>
+  <rdf:type rdf:resource="#NetSport"/>
+  <rdf:type rdf:resource="#NonContactSport"/>
+  <rdf:type rdf:resource="#MediumPhysicalActivitySport"/>
+  <PlayedAt rdf:resource="#TableTennisSportsHall"/>
+  <PlayedWith rdf:resource="#TableTennisRacquet"/>
+  <PlayedWith rdf:resource="#TableTennisfBall"/>
+  <PlayedWith rdf:resource="#TableTennisNet"/>
+  <PhysicalActivityLevel rdf:resource="#ActiveMovements"/>
+  <IsTeamSport rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</IsTeamSport>
+  <HasPhysicalContact rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</HasPhysicalContact>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#SurfingBeach">
+  <rdf:type rdf:resource="#Beach"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#SurfingBoard">
+  <rdf:type rdf:resource="#Board"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DynamicStrenghtSwimming">
+  <rdf:type rdf:resource="#HighPhysicalActivity"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Surfing">
+  <rdf:type rdf:resource="#Sport"/>
+  <rdf:type rdf:resource="#IndividualSport"/>
+  <rdf:type rdf:resource="#BeachSport"/>
+  <rdf:type rdf:resource="#BoardSport"/>
+  <rdf:type rdf:resource="#NonContactSport"/>
+  <rdf:type rdf:resource="#HighPhysicalActivitySport"/>
+  <PlayedAt rdf:resource="#SurfingBeach"/>
+  <PlayedWith rdf:resource="#SurfingBoard"/>
+  <PhysicalActivityLevel rdf:resource="#DynamicStrenghtSwimming"/>
+  <IsTeamSport rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</IsTeamSport>
+  <HasPhysicalContact rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</HasPhysicalContact>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#VolleyballSportsHall">
+  <rdf:type rdf:resource="#SportsHall"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#VolleyballBall">
+  <rdf:type rdf:resource="#Ball"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#VolleyballNet">
+  <rdf:type rdf:resource="#Net"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#JumpingRunning">
+  <rdf:type rdf:resource="#HighPhysicalActivity"/>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#Volleyball">
+  <rdf:type rdf:resource="#Sport"/>
+  <rdf:type rdf:resource="#TeamSport"/>
+  <rdf:type rdf:resource="#SportsHallSport"/>
+  <rdf:type rdf:resource="#BallSport"/>
+  <rdf:type rdf:resource="#NetSport"/>
+  <rdf:type rdf:resource="#ContactSport"/>
+  <rdf:type rdf:resource="#HighPhysicalActivitySport"/>
+  <PlayedAt rdf:resource="#VolleyballSportsHall"/>
+  <PlayedWith rdf:resource="#VolleyballBall"/>
+  <PlayedWith rdf:resource="#VolleyballNet"/>
+  <PhysicalActivityLevel rdf:resource="#JumpingRunning"/>
+  <HasTeamSize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</HasTeamSize>
+  <IsTeamSport rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</IsTeamSport>
+  <HasPhysicalContact rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</HasPhysicalContact>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#KirilDespodov">
+  <rdf:type rdf:resource="#SportParticipant"/>
+  <rdf:type rdf:resource="#Athlete"/>
+  <rdf:type rdf:resource="#TeamAthlete"/>
+  <PlaysSport rdf:resource="#Football"/>
+  <HasTeammate rdf:resource="#DominikKotarski"/>
+  <IsPartOfTeam rdf:resource="#BulgariaNationalFootballTeam"/>
+  <IsPartOfTeam rdf:resource="#PaokFC"/>
+  <DateOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1996-11-11</DateOfBirth>
+  <PlaceOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria</PlaceOfBirth>
+  <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Despodov</LastName>
+  <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kiril</FirstName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DimitarMitov">
+  <rdf:type rdf:resource="#SportParticipant"/>
+  <rdf:type rdf:resource="#Athlete"/>
+  <rdf:type rdf:resource="#TeamAthlete"/>
+  <PlaysSport rdf:resource="#Football"/>
+  <HasTeammate rdf:resource="#KirilDespodov"/>
+  <IsPartOfTeam rdf:resource="#BulgariaNationalFootballTeam"/>
+  <DateOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1997-01-22</DateOfBirth>
+  <PlaceOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria</PlaceOfBirth>
+  <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dimitar</FirstName>
+  <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Mitov</LastName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#DominikKotarski">
+  <rdf:type rdf:resource="#SportParticipant"/>
+  <rdf:type rdf:resource="#Athlete"/>
+  <rdf:type rdf:resource="#TeamAthlete"/>
+  <PlaysSport rdf:resource="#Football"/>
+  <HasTeammate rdf:resource="#KirilDespodov"/>
+  <IsPartOfTeam rdf:resource="#PaokFC"/>
+  <DateOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">2000-02-10</DateOfBirth>
+  <PlaceOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Croatia</PlaceOfBirth>
+  <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dominik</FirstName>
+  <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kotarski</LastName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BulgariaNationalFootballTeam">
+  <rdf:type rdf:resource="#Team"/>
+  <PlaysSport rdf:resource="#Football"/>
+  <HasTeamMember rdf:resource="#KirilDespodov"/>
+  <HasTeamMember rdf:resource="#DimitarMitov"/>
+  <Country rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria</Country>
+  <TeamName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria_National_Football_Team</TeamName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#PaokFC">
+  <rdf:type rdf:resource="#Team"/>
+  <PlaysSport rdf:resource="#Football"/>
+  <HasTeamMember rdf:resource="#KirilDespodov"/>
+  <HasTeamMember rdf:resource="#DominikKotarski"/>
+  <Country rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greece</Country>
+  <TeamName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PAOK_FC</TeamName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#IvetLalova">
+  <rdf:type rdf:resource="#SportParticipant"/>
+  <rdf:type rdf:resource="#Athlete"/>
+  <PlaysSport rdf:resource="#Sprint"/>
+  <DateOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1984-05-18</DateOfBirth>
+  <PlaceOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria</PlaceOfBirth>
+  <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ivet</FirstName>
+  <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lalova</LastName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#AleksGrozdanov">
+  <rdf:type rdf:resource="#SportParticipant"/>
+  <rdf:type rdf:resource="#Athlete"/>
+  <rdf:type rdf:resource="#TeamAthlete"/>
+  <PlaysSport rdf:resource="#Volleyball"/>
+  <IsPartOfTeam rdf:resource="#BulgariaNationalVolleyballTeam"/>
+  <DateOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1998-03-28</DateOfBirth>
+  <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Aleks</FirstName>
+  <PlaceOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria</PlaceOfBirth>
+  <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grozdanov</LastName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#MateyKaziyski">
+  <rdf:type rdf:resource="#SportParticipant"/>
+  <rdf:type rdf:resource="#Athlete"/>
+  <rdf:type rdf:resource="#TeamAthlete"/>
+  <PlaysSport rdf:resource="#Volleyball"/>
+  <IsPartOfTeam rdf:resource="#BulgariaNationalVolleyballTeam"/>
+  <DateOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1984-09-23</DateOfBirth>
+  <PlaceOfBirth rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria</PlaceOfBirth>
+  <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Kaziyski</LastName>
+  <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Matey</FirstName>
+</owl:NamedIndividual>
+
+<owl:NamedIndividual rdf:about="#BulgariaNationalVolleyballTeam">
+  <rdf:type rdf:resource="#Team"/>
+  <PlaysSport rdf:resource="#Volleyball"/>
+  <HasTeamMember rdf:resource="#AleksGrozdanov"/>
+  <HasTeamMember rdf:resource="#MateyKaziyski"/>
+  <Country rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria</Country>
+  <TeamName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bulgaria_National_Volleyball_Team</TeamName>
+</owl:NamedIndividual>
+
+
+</rdf:RDF>
