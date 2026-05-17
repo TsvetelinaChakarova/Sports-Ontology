@@ -1,6 +1,6 @@
 # Sports-Ontology
 
-This repository represents the the university course project for "Knowledge Representation and Modeling" course.
+This repository represents the university course project for "Knowledge Representation and Modeling" course.
 
 ## Introduction
 
